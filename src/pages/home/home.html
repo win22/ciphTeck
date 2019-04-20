@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>
+      Appli shopping
+    </ion-title>
+    <button ion-button="" menuToggle="">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+  <button  (click)="showDetail(art)" ion-item *ngFor="let art of Articles" >
+    <ion-thumbnail  item-start>
+    <img src="{{art.pictures[0]}}" #picture (click)="showImage(picture, $event)">
+    </ion-thumbnail>
+    <h3>{{art.title}}</h3>
+    <p>{{art.description}}</p>
+    <p>{{art.price | currency}}</p>
+    <p>
+      <span *ngIf="art.averageStar >=1 ">
+          <ion-icon class="yellow" name="star" ></ion-icon>
+      </span>
+      <span *ngIf="art.averageStar >=2 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="art.averageStar >=3 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="art.averageStar >=4 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="art.averageStar >=5 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+    </p>
+</button>
+</ion-list>
+
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <!--que cette colonne saute une largeur et mesure 10-->
+        <ion-col >
+          <button ion-button  block small class="monFooter" large color="danger">
+            <ion-icon name="camera">&nbsp;Vendre vos biens</ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+</ion-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<ion-content padding>
+  <p>
+  C'est ici que j'affiche tous les articles à vendre....
+  </p>
+  
+  <ul *ngFor="let art of Article" >
+    --je passe un ecouteur d'evenement à ma liste--
+    <li (click)="showDetail(art)"> Marque :{{art.nom}} -  Prix :{{art.prix}}   </li>
+  </ul>
+ 
+  <ion-list>
+    <button ion-item *ngFor="let art of Article"  (click)="showDetail(art)">{{art.nom}} - {{art.prix}}</button>
+  </ion-list>
+  <button ion-button  (click)="showClassAlert()">Classic Alert</button>
+  <button ion-button  (click)="showIonicAlert()">Ionic Alert</button><br>
+  <button ion-button  (click)="showAction()">Ionic Action</button>
+</ion-content>
+
+<ion-footer>
+  <p class="monFooter">je suis au pied de page...</p>
+</ion-footer>
+ -->

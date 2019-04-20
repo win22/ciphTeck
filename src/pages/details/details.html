@@ -1,0 +1,112 @@
+<!--
+  Generated template for the DetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>{{producDetail.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button><ion-icon name="share"></ion-icon></button>  
+      <button ion-button (click)="OpenCart()"><ion-icon name="cart"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen>
+ <ion-card>
+    <ion-slides pager autoplay="1500" loop="true">
+        <ion-slide *ngFor="let prod of producDetail.pictures" >
+            <img class="myImg"src="{{prod}}">
+        </ion-slide>
+       </ion-slides>
+       <ion-card-content>
+         <ion-card-title>
+            <p>Prix: {{producDetail.price | currency}}</p>
+    <p> Notes :
+      <span *ngIf="producDetail.averageStar >=1 ">
+          <ion-icon class="yellow" name="star" ></ion-icon>
+      </span>
+      <span *ngIf="producDetail.averageStar >=2 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="producDetail.averageStar >=3 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="producDetail.averageStar >=4 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+      <span *ngIf="producDetail.averageStar >=5 ">
+          <ion-icon class="yellow" name="star" color="yellow"></ion-icon>
+      </span>
+    </p>
+    <p>{{producDetail.description}}</p>
+           <ion-chip color="primary">
+             <ion-label>
+              {{producDetail.category}}
+             </ion-label>
+           </ion-chip>
+           <!--si le produit detail est disponible tu m'affiche le label vue que c'est un booleen-->
+           <ion-chip color="secondary" *ngIf="producDetail.availability.available" >
+              <ion-label>
+               Disponible
+              </ion-label>
+            </ion-chip>
+             <!--si le produit detail est disponible tu m'affiche le label vue que c'est un booleen-->
+           <ion-chip color="danger" *ngIf="!producDetail.availability.available" >
+              <ion-label>
+               Non Disponible
+              </ion-label>
+            </ion-chip>
+
+            <ion-chip>
+                <ion-label>
+                 {{producDetail.availability.type}}
+                </ion-label>
+              </ion-chip>
+
+
+              <ion-chip>
+                  <ion-label>
+                   {{producDetail.state}}
+                  </ion-label>
+                </ion-chip>
+              <ion-chip>
+                  <ion-label>
+                   {{producDetail.city}}
+                  </ion-label>
+                </ion-chip>
+         </ion-card-title>
+         <ion-grid>
+           <ion-row>
+             <ion-col col-9 small> 
+              <ionic3-star-rating 
+              activeIcon = "ios-star"
+              defaultIcon = "ios-star-outline"
+              activeColor = "#f4e242"
+              defaultColor = "#f4f4f4"
+              readonly = "false"
+              [rating]= "3">
+              </ionic3-star-rating>
+             </ion-col>
+             <ion-col col-3>
+               <button ion-button padding small round color="secondary">Noter</button>
+             </ion-col>
+           </ion-row>
+         </ion-grid>
+       </ion-card-content>
+ </ion-card>
+ 
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <!--que cette colonne saute une largeur et mesure 10-->
+        <ion-col >
+          <button ion-button block small large class="monFooter" color="danger">
+    
+            <ion-icon  (click)="addToPanier(producDetail)" name="cart">&nbsp;Ajouter au panier</ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+</ion-footer>
